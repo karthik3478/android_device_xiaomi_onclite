@@ -244,7 +244,7 @@ PRODUCT_PACKAGES += \
     libdisplayconfig \
     libvulkan \
     libqdMetaData \
-    libqdMetaData.system \
+    libqdMetaData.vendor \
     libtinyxml \
     libdmabufheap.vendor \
     vendor.display.config@1.9 \
