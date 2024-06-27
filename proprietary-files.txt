@@ -1622,3 +1622,7 @@ vendor/lib64/libthermalfeature.so|1c408911610e5b6a11853aff1900860f9e9a861f
 -vendor/app/TimeService/TimeService.apk|1a5f39aa2969feee50ff81ec870b5e2669ae515e
 vendor/bin/time_daemon|48401d7f85c87aa3e12ce7b4a969a50cbf59c293
 vendor/lib64/libtime_genoff.so|8bb116ad297a5e4a94da2f10509509cb6e863a5f
+
+# Vulkan (OpenGL) - from LA.UM.10.6.2.r1-02500-89xx.0
+vendor/lib/hw/vulkan.adreno.so;SYMLINK=vendor/lib/hw/vulkan.msm8953.so|d8605174a447fe05976ed195318797f73a943ed5
+vendor/lib64/hw/vulkan.adreno.so;SYMLINK=vendor/lib64/hw/vulkan.msm8953.so|242ba0af54ad1467998c8df1345b85d568889a4a
