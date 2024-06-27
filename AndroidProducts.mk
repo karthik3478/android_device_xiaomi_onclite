@@ -2,10 +2,10 @@ PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/genesis_onclite.mk
 
 COMMON_LUNCH_CHOICES := \
-    lineage_onclite-user \
-    lineage_onclite-userdebug \
-    lineage_onclite-eng \
-    lineage_onclite-ap1a-user \
-    lineage_onclite-ap1a-userdebug \
-    lineage_onclite-ap1a-eng
+    genesis_onclite-user \
+    genesis_onclite-userdebug \
+    genesis_onclite-eng \
+    genesis_onclite-ap1a-user \
+    genesis_onclite-ap1a-userdebug \
+    genesis_onclite-ap1a-eng
 
