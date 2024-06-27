@@ -26,6 +26,7 @@ TARGET_BOARD_PLATFORM := msm8953
 
 TARGET_BOARD_SUFFIX := _64
 
+PRODUCT_ENFORCE_VINTF_MANIFEST_OVERRIDE := true
 PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := true
 
 PRODUCT_PACKAGES += BatteryResOnc
@@ -35,6 +36,7 @@ PRODUCT_PACKAGES += CertifiedResOnc
 $(call inherit-product, vendor/xiaomi/onclite/onclite-vendor.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/non_ab_device.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
+$(call inherit-product, hardware/qcom-caf/common/common.mk)
 
 BOARD_VENDOR := xiaomi
 PRODUCT_SOONG_NAMESPACES += hardware/xiaomi
@@ -116,7 +118,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.cts.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.cts.xml \
     frameworks/native/data/etc/android.software.verified_boot.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.verified_boot.xml \
     frameworks/native/data/etc/android.software.voice_recognizers.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.voice_recognizers.xml \
-	$(LOCAL_PATH)/configs/privapp-permissions-google-product-hotwordenrollment.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-google-product-hotwordenrollment.xml \
+    $(LOCAL_PATH)/configs/privapp-permissions-google-product-hotwordenrollment.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-google-product-hotwordenrollment.xml \
     frameworks/native/data/etc/android.software.credentials.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.credentials.xml \
     frameworks/native/data/etc/android.software.freeform_window_management.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.software.freeform_window_management.xml
 
@@ -139,6 +141,7 @@ PRODUCT_PACKAGES += \
     audio.primary.msm8953 \
     audio.r_submix.default \
     audio.usb.default \
+    libaudiopreprocessing \
     libaudioroute \
     libaudio-resampler \
     libqcomvisualizer \
@@ -146,29 +149,29 @@ PRODUCT_PACKAGES += \
     libqcompostprocbundle \
     libaacwrapper \
     libvolumelistener \
+    libtinycompress \
     tinymix \
     libnbaio
 
 # Audio configuration
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/audio/audio_policy.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy.conf \
-	$(LOCAL_PATH)/audio/audio_output_policy.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio_output_policy.conf \
-	$(LOCAL_PATH)/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
-	$(LOCAL_PATH)/audio/sound_trigger_mixer_paths.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sound_trigger_mixer_paths.xml \
-	$(LOCAL_PATH)/audio/sound_trigger_platform_info.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sound_trigger_platform_info.xml \
-	$(LOCAL_PATH)/audio/audio_tuning_mixer.txt:$(TARGET_COPY_OUT_VENDOR)/etc/audio_tuning_mixer.txt \
-        $(LOCAL_PATH)/audio/audio_platform_info.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_platform_info.xml \
-        $(LOCAL_PATH)/audio/mixer_paths_mtp.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mixer_paths_mtp.xml
+    $(LOCAL_PATH)/audio/audio_policy.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy.conf \
+    $(LOCAL_PATH)/audio/audio_output_policy.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio_output_policy.conf \
+    $(LOCAL_PATH)/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
+    $(LOCAL_PATH)/audio/sound_trigger_mixer_paths.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sound_trigger_mixer_paths.xml \
+    $(LOCAL_PATH)/audio/sound_trigger_platform_info.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sound_trigger_platform_info.xml \
+    $(LOCAL_PATH)/audio/audio_tuning_mixer.txt:$(TARGET_COPY_OUT_VENDOR)/etc/audio_tuning_mixer.txt \
+    $(LOCAL_PATH)/audio/audio_platform_info.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_platform_info.xml \
+    $(LOCAL_PATH)/audio/mixer_paths_mtp.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mixer_paths_mtp.xml
 
 # XML Audio configuration files
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml \
-        $(TOPDIR)frameworks/av/services/audiopolicy/config/a2dp_in_audio_policy_configuration.xml:/$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_in_audio_policy_configuration.xml \
-        $(TOPDIR)frameworks/av/services/audiopolicy/config/bluetooth_audio_policy_configuration.xml:/$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_audio_policy_configuration.xml \
-	$(TOPDIR)frameworks/av/services/audiopolicy/config/audio_policy_volumes.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_volumes.xml \
-	$(TOPDIR)frameworks/av/services/audiopolicy/config/default_volume_tables.xml:$(TARGET_COPY_OUT_VENDOR)/etc/default_volume_tables.xml \
-	$(TOPDIR)frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml \
-	$(TOPDIR)frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usb_audio_policy_configuration.xml
+    $(LOCAL_PATH)/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml \
+    frameworks/av/services/audiopolicy/config/bluetooth_audio_policy_configuration.xml:/$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_audio_policy_configuration.xml \
+    frameworks/av/services/audiopolicy/config/audio_policy_volumes.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_volumes.xml \
+    frameworks/av/services/audiopolicy/config/default_volume_tables.xml:$(TARGET_COPY_OUT_VENDOR)/etc/default_volume_tables.xml \
+    frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml \
+    frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usb_audio_policy_configuration.xml
 
 # Bluetooth
 PRODUCT_PACKAGES += \
@@ -208,10 +211,14 @@ PRODUCT_PACKAGES += \
     libcamera_metadata.vendor \
     libexif.vendor \
     libutilscallstack.vendor \
-    libyuv.vendor \
+    libexpat.vendor \
     vendor.qti.hardware.camera.postproc@1.0.vendor \
     vendor.qti.hardware.camera.device@1.0 \
     vendor.qti.hardware.camera.device@1.0.vendor
+
+# Configstore
+PRODUCT_PACKAGES += \
+    disable_configstore
 
 # Configstore
 PRODUCT_PACKAGES += \
@@ -243,8 +250,9 @@ PRODUCT_PACKAGES += \
     libdisplayconfig \
     libvulkan \
     libqdMetaData \
-    libqdMetaData.system \
+    libqdMetaData.vendor \
     libtinyxml \
+    libdmabufheap.vendor \
     vendor.display.config@1.9 \
     vendor.display.config@1.9.vendor
 
@@ -265,6 +273,7 @@ PRODUCT_PACKAGES += \
 # Fingerprint
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.1 \
+    android.hardware.biometrics.fingerprint@2.1 \
     android.hardware.biometrics.fingerprint@2.1.vendor
 
 PRODUCT_COPY_FILES += \
@@ -283,6 +292,7 @@ PRODUCT_PACKAGES += \
 
 # Gatekeeper
 PRODUCT_PACKAGES += \
+    libgatekeeper.vendor \
     android.hardware.gatekeeper@1.0.vendor
 
 # GNSS
@@ -300,6 +310,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libcurl \
     libcurl.vendor \
+    libcurl.vendor \
     libwifi-hal-ctrl
 
 # Health HAL
@@ -315,14 +326,20 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hidl.allocator@1.0 \
     android.hidl.allocator@1.0.vendor \
+    android.hidl.allocator@1.0 \
+    android.hidl.allocator@1.0.vendor \
     android.hidl.base@1.0 \
     android.hidl.base@1.0.vendor \
     android.hidl.manager@1.0 \
     android.hidl.manager@1.0.vendor \
     android.hidl.memory@1.0 \
     android.hidl.memory@1.0.vendor \
+    android.hidl.memory@1.0 \
+    android.hidl.memory@1.0.vendor \
     libhidltransport \
     libhidltransport.vendor \
+    libhidlmemory \
+    libhidlmemory.vendor \
     libhidlmemory \
     libhidlmemory.vendor \
     libhwbinder \
@@ -369,11 +386,16 @@ PRODUCT_COPY_FILES += \
 
 # Keymaster
 PRODUCT_PACKAGES += \
+    libkeymaster4.vendor \
+    libkeymaster4support.vendor \
+    libkeymaster_portable.vendor \
+    libkeymaster_messages.vendor \
+    libpuresoftkeymasterdevice.vendor \
     android.hardware.keymaster@4.1.vendor
 
 # Lights
 PRODUCT_PACKAGES += \
-    android.hardware.light@2.0-service.onclite
+    android.hardware.light-service.xiaomi
 
 # LiveDisplay
 PRODUCT_PACKAGES += \
@@ -404,7 +426,9 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
     android.media.audio.common.types-V2-cpp \
+    libjpeg.vendor \
     libpng.vendor \
+    libyuv.vendor \
     libprocessgroup.vendor \
     libion.vendor \
     libavservices_minijail \
@@ -437,6 +461,7 @@ PRODUCT_PACKAGES += \
 
 # Power
 PRODUCT_PACKAGES += \
+    libpower.vendor \
     android.hardware.power@1.2.vendor \
     android.hardware.power-service-qti \
     vendor.qti.hardware.perf@2.2.vendor
@@ -451,6 +476,7 @@ PRODUCT_COPY_FILES += \
 
 # QMI
 PRODUCT_PACKAGES += \
+    libjsoncpp.vendor \
     libjsoncpp.vendor \
     libjson
 
@@ -470,6 +496,8 @@ PRODUCT_PACKAGES += \
     libsysutils.vendor \
     libcrypto_utils.vendor \
     libssl.vendor \
+    libbinder.vendor \
+    libevent.vendor \
     libqti_vndfwk_detect \
     libqti_vndfwk_detect.vendor \
     libvndfwk_detect_jni.qti \
@@ -477,6 +505,7 @@ PRODUCT_PACKAGES += \
 
 # Ramdisk
 PRODUCT_PACKAGES += \
+    liblzma.vendor \
     fstab.qcom \
     fstab.qcom_ramdisk \
     fstab.qcom_ramdisk2 \
@@ -494,10 +523,6 @@ PRODUCT_PACKAGES += \
     init.qcom.early_boot.sh \
     init.qcom.post_boot.sh \
     init.qcom.sensors.sh
-
-# RenderScript HAL
-PRODUCT_PACKAGES += \
-    android.hardware.renderscript@1.0-impl
 
 # RIL
 PRODUCT_COPY_FILES += \
@@ -534,7 +559,7 @@ PRODUCT_PACKAGES += \
     qti-telephony-utils-prd \
     qti_telephony_utils.xml \
     qti_telephony_utils_prd.xml \
-    libnetutils \
+    libziparchive.vendor \
     libnetutils.vendor \
     telephony-ext
 
@@ -551,6 +576,7 @@ PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl \
     android.hardware.sensors@1.0-service \
     android.frameworks.sensorservice@1.0 \
+    libunwindstack.vendor \
     libdumpstateutil.vendor \
     libsensorndkbridge
 
@@ -560,6 +586,7 @@ PRODUCT_COPY_FILES += \
 
 # Shims
 PRODUCT_PACKAGES += \
+    libgui_shim:64 \
     libui_shim.vendor
 
 # Soong namespaces
@@ -574,9 +601,15 @@ PRODUCT_PACKAGES += \
     android.hardware.usb@1.3-service.basic
 
 # Vibrator
-TARGET_USES_DEVICE_SPECIFIC_VIBRATOR := true
 PRODUCT_PACKAGES += \
-    android.hardware.vibrator@1.3-service.xiaomi_onclite
+    vendor.qti.hardware.vibrator.service
+
+PRODUCT_COPY_FILES += \
+    vendor/qcom/opensource/vibrator/excluded-input-devices.xml:$(TARGET_COPY_OUT_VENDOR)/etc/excluded-input-devices.xml
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    vendor.qcom.vibrator.led.mv_min=1504 \
+    vendor.qcom.vibrator.led.mv_max=3544
 
 # vndservicemanager
 PRODUCT_PACKAGES += \
@@ -601,6 +634,11 @@ PRODUCT_PACKAGES += \
     libwifi-system-iface.vendor \
     wpa_supplicant \
     wpa_supplicant.conf
+
+PRODUCT_PACKAGES += \
+    firmware_WCNSS_qcom_cfg.ini_symlink \
+    firmware_WCNSS_qcom_wlan_nv.bin_symlink \
+    firmware_WCNSS_wlan_dictionary.dat_symlink
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
