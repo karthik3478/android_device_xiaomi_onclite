@@ -1,11 +1,11 @@
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/genesis_onclite.mk
+    $(LOCAL_DIR)/aosp_onclite.mk
 
 COMMON_LUNCH_CHOICES := \
-    genesis_onclite-user \
-    genesis_onclite-userdebug \
-    genesis_onclite-eng \
-    genesis_onclite-ap1a-user \
-    genesis_onclite-ap1a-userdebug \
-    genesis_onclite-ap1a-eng
+    aosp_onclite-user \
+    aosp_onclite-userdebug \
+    aosp_onclite-eng \
+    aosp_onclite-ap2a-user \
+    aosp_onclite-ap2a-userdebug \
+    aosp_onclite-ap2a-eng
 
