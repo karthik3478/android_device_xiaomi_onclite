@@ -1,8 +1,8 @@
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/xperience_onclite.mk
+    $(LOCAL_DIR)/pixelstar_onclite.mk
 
 COMMON_LUNCH_CHOICES := \
-    xperience_onclite-user \
-    xperience_onclite-userdebug \
-    xperience_onclite-eng \
+    pixelstar_onclite-user \
+    pixelstar_onclite-userdebug \
+    pixelstar_onclite-eng \
 
