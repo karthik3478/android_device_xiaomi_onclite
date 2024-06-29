@@ -12,7 +12,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/xiaomi/onclite/device.mk)
 
 # Inherit some common Lineage stuff.
-$(call inherit-product, vendor/xperience/config/common_full_phone.mk)
+$(call inherit-product, vendor/xperience/config/common.mk)
 
 # Device identifier. This must come after all inclusions.
 PRODUCT_NAME := bliss_onclite
