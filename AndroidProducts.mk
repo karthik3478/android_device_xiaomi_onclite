@@ -1,9 +1,11 @@
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/aosp_onclite.mk
+    $(LOCAL_DIR)/superior_onclite.mk
 
 COMMON_LUNCH_CHOICES := \
-    aosp_onclite-user \
-    aosp_onclite-userdebug \
-    aosp_onclite-eng \
-    aosp_onclite-ap2a-userdebug \
+    superior_onclite-user \
+    superior_onclite-userdebug \
+    superior_onclite-eng \
+    superior_onclite-ap2a-eng \
+    superior_onclite-ap2a-userdebug \
+    superior_onclite-ap2a-user
 
